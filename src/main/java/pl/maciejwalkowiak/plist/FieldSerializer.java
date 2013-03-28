@@ -1,8 +1,11 @@
 package pl.maciejwalkowiak.plist;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import org.springframework.util.ReflectionUtils;
+
+
 import pl.maciejwalkowiak.plist.annotation.PlistAlias;
 import pl.maciejwalkowiak.plist.annotation.PlistIgnore;
 import pl.maciejwalkowiak.plist.handler.Handler;
@@ -17,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FieldSerializer {
-	private static final Logger logger = LoggerFactory.getLogger(FieldSerializer.class);
+	private Log logger = LogFactory.getLog(FieldSerializer.class);
 
 	private HandlerWrapper handlerWrapper;
 
@@ -53,7 +56,9 @@ public class FieldSerializer {
 			if (!field.isAnnotationPresent(PlistIgnore.class)) {
 				result = processField(field, o).toString();
 			} else {
-				logger.debug("field {} is ignored", field.getName());
+				logger.debug("field {" + field.getName() + "} is ignored");
+				
+				
 			}
 		}
 

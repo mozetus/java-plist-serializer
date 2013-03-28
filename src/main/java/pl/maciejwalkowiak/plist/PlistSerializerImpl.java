@@ -1,12 +1,14 @@
 package pl.maciejwalkowiak.plist;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import pl.maciejwalkowiak.plist.handler.Handler;
 import pl.maciejwalkowiak.plist.handler.HandlerWrapper;
 import pl.maciejwalkowiak.plist.strategy.DefaultNamingStrategy;
 
 import java.util.List;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Implementation of {@link PlistSerializer} capable of serializing objects containing elements:
@@ -28,7 +30,7 @@ import java.util.List;
  * @author Maciej Walkowiak
  */
 public class PlistSerializerImpl implements PlistSerializer {
-	private static final Logger logger = LoggerFactory.getLogger(PlistSerializerImpl.class);
+	private Log logger = LogFactory.getLog(PlistSerializerImpl.class);
 
 	private HandlerWrapper handlerWrapper;
 	private BasicObjectSerializer basicObjectSerializer;
@@ -59,7 +61,7 @@ public class PlistSerializerImpl implements PlistSerializer {
 	public String serialize(Object objectToConvert) {
 		StringBuilder result = new StringBuilder();
 
-		logger.debug("converting object = {}", objectToConvert);
+		logger.debug("converting object = {" + objectToConvert + "}");
 
 		if (objectToConvert != null) {
 			if (handlerWrapper.isSupported(objectToConvert)) {
